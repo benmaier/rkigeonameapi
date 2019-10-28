@@ -2,6 +2,10 @@
 
 Django-webapp for easy access to a hierarchical geo-location database.
 
+## License
+
+This project is published under the MIT license. It uses the [geoname-data](http://www.geonames.org/) which is licensed under a [Creative Commons Attribution 4.0 License](https://creativecommons.org/licenses/by/4.0/).
+
 ## Install and Deployment
 
 Only tested with Python 3.7.
