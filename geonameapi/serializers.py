@@ -1,4 +1,5 @@
 from rest_framework import serializers, permissions
+
 from .models import (
             Featurecode,
             Continent,
@@ -19,6 +20,11 @@ class NestedFeaturecodeSerializer(serializers.ModelSerializer):
         model = Featurecode
         fields = ['code', 'name']
 
+class NestedFeaturecodeMinimalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Featurecode
+        fields = ['code']
+
 class ContinentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Continent
@@ -31,30 +37,10 @@ class NestedCountryinfoSerializer(serializers.ModelSerializer):
         fields = ['iso_alpha2', 'name', 'continent','population']
 
 class CountryinfoSerializer(serializers.ModelSerializer):
+    continent = ContinentSerializer()
     class Meta:
         model = Countryinfo
-        fields = [
-            'iso_alpha2',        
-            'iso_alpha3',        
-            'iso_numeric',       
-            'fips_code',         
-            'name',              
-            'englishname',       
-            'capital',           
-            'areainsqkm',        
-            'population',        
-            'continent',         
-            'tld',               
-            'currency',          
-            'currencyname',      
-            'phone',             
-            'postalcodeformat',  
-            'postalcoderegex',   
-            'geonameid',         
-            'languages',         
-            'neighbours',        
-            'equivalentfipscode',
-            ]
+        exclude = []
 
 class NestedAlternatenameSerializer(serializers.ModelSerializer):
     class Meta:
@@ -67,6 +53,18 @@ class NestedGeonameSerializer(serializers.ModelSerializer):
         model = Geoname
         fields = ['geonameid', 'name','fcode']
 
+class NestedGeonameMinimalSerializer(serializers.ModelSerializer):
+    fcode = NestedFeaturecodeMinimalSerializer(required=False)
+    class Meta:
+        model = Geoname
+        fields = ['geonameid', 'fcode']
+
+class GeonameChildrenUpdateSerializer(serializers.ModelSerializer):
+    children_ids = serializers.PrimaryKeyRelatedField(many=True,read_only=False,queryset=Geoname.objects.all(),source='children')
+    class Meta:
+        model = Geoname
+        fields = ['geonameid','children_ids']
+
 class GeonameSerializer(serializers.ModelSerializer):
     country = NestedCountryinfoSerializer()
     children = NestedGeonameSerializer(many=True)
@@ -74,47 +72,17 @@ class GeonameSerializer(serializers.ModelSerializer):
     class Meta:
 
         model = Geoname
-        fields = [
-        'geonameid',               
-        'name',                    
-        'englishname',             
-        'asciiname',               
-        'allalternatenames',          
-        'latitude',                
-        'longitude',               
-        'fclass',                  
-        'fcode',                   
-        'country',                 
-        'cc2',                    
-        'admin1',                 
-        'admin2',                 
-        'admin3',                 
-        'admin4',                 
-        'population',             
-        'elevation',              
-        'gtopo30',                
-        'timezone',               
-        'moddate',                
-        'children',               
-        ]
-
-    #def create(self, validated_data):
-    #    children_data = validated_data.pop('children')
-    #    geoname = Geoname.objects.create(**validated_data)
-    #    for track_data in tracks_data:
-    #        Track.objects.create(album=album, **track_data)
-    #    return album
+        exclude = []
 
 class RegionSerializer(serializers.ModelSerializer):
     laender = NestedCountryinfoSerializer(many=True)
     class Meta:
         model = Region
-        fields = [
-        'region_id',     
-        'name',          
-        'englishname',   
-        'geonameid',     
-        'fcode',         
-        'laender',
-        ]
+        exclude = []
+
+class RegionCountriesUpdateSerializer(serializers.ModelSerializer):
+    laender_ids = serializers.PrimaryKeyRelatedField(many=True,read_only=False,queryset=Countryinfo.objects.all(),source='laender')
+    class Meta:
+        model = Region
+        fields = ['region_id', 'laender_ids']
 

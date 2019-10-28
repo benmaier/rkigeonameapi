@@ -16,7 +16,9 @@ from .serializers import (
             CountryinfoSerializer,
             ContinentSerializer,
             GeonameSerializer,
+            GeonameChildrenUpdateSerializer,
             RegionSerializer,
+            RegionCountriesUpdateSerializer,
         )
 
 # Create your views here.
@@ -53,11 +55,20 @@ class GeonameDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Geoname.objects.all()
     serializer_class = GeonameSerializer
 
+class GeonameChildrenUpdateDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Geoname.objects.all()
+    serializer_class = GeonameChildrenUpdateSerializer
+
 class RegionList(generics.ListCreateAPIView):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
 
-class GeonameDetail(generics.RetrieveUpdateDestroyAPIView):
+class RegionDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Region.objects.all()
     serializer_class = RegionSerializer
+
+class RegionCountriesUpdateDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Region.objects.all()
+    serializer_class = RegionCountriesUpdateSerializer
+
 

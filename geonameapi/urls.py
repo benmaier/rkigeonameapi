@@ -1,6 +1,6 @@
 from django.urls import path, include
 from django.conf.urls import url
-from rest_framework.urlpatterns import format_suffix_patterns
+#from rest_framework.urlpatterns import format_suffix_patterns
 from .views import (
             FeaturecodeList,
             FeaturecodeDetail,
@@ -8,8 +8,12 @@ from .views import (
             CountryinfoDetail,
             GeonameList,
             GeonameDetail,
+            GeonameChildrenUpdateDetail,
             ContinentList,
             ContinentDetail,
+            RegionList,
+            RegionDetail,
+            RegionCountriesUpdateDetail,
         )
 
 urlpatterns = [
@@ -21,6 +25,10 @@ urlpatterns = [
     path('continent/<str:pk>', ContinentDetail.as_view()),
     path('geoname/', GeonameList.as_view()),
     path('geoname/<int:pk>', GeonameDetail.as_view()),
+    path('geonamechildren/<int:pk>', GeonameChildrenUpdateDetail.as_view()),
+    path('region/', RegionList.as_view()),
+    path('region/<str:pk>', RegionDetail.as_view()),
+    path('regioncountries/<str:pk>', RegionCountriesUpdateDetail.as_view()),
 ]
 
-urlpatterns = format_suffix_patterns(urlpatterns)
+#urlpatterns = format_suffix_patterns(urlpatterns)
