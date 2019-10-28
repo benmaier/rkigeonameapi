@@ -68,7 +68,7 @@ class GeonameChildrenUpdateSerializer(serializers.ModelSerializer):
 class GeonameSerializer(serializers.ModelSerializer):
     country = NestedCountryinfoSerializer()
     children = NestedGeonameSerializer(many=True)
-    allalternatenames = NestedAlternatenameSerializer(many=True)
+    alternatenames = NestedAlternatenameSerializer(many=True)
     class Meta:
 
         model = Geoname

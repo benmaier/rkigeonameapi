@@ -75,7 +75,6 @@ class Geoname(models.Model):
     name = models.CharField(max_length=255, blank=True, null=True)
     englishname = models.CharField(max_length=255, blank=True, null=True)
     asciiname = models.CharField(max_length=101, blank=True, null=True)
-    alternatenames = models.CharField(max_length=4000, blank=True, null=True)
     latitude = models.DecimalField(max_digits=10, decimal_places=7, blank=True, null=True)
     longitude = models.DecimalField(max_digits=10, decimal_places=7, blank=True, null=True)
     fclass = models.CharField(max_length=1, blank=True, null=True)
@@ -127,7 +126,7 @@ class Hierarchy(models.Model):
 
 class Alternatename(models.Model):
     alternatenameid = models.IntegerField(db_column='alternatenameId', primary_key=True)  # Field name made lowercase.
-    geonameid = models.ForeignKey(Geoname,models.DO_NOTHING, blank=True, null=True,db_column='geonameid',related_name='allalternatenames')
+    geonameid = models.ForeignKey(Geoname,models.DO_NOTHING, blank=True, null=True,db_column='geonameid',related_name='alternatenames')
     isolanguage = models.CharField(db_column='isoLanguage', max_length=7, blank=True, null=True)  # Field name made lowercase.
     alternatename = models.CharField(db_column='alternateName', max_length=191, blank=True, null=True)  # Field name made lowercase.
     ispreferredname = models.IntegerField(db_column='isPreferredName', blank=True, null=True)  # Field name made lowercase.
