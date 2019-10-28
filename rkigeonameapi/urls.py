@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('api/', include('geonameapi.urls')),
+    path('geonameapi/', include('geonameapi.urls')),
     path('', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
 ]

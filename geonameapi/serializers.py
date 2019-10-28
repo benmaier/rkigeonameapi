@@ -1,4 +1,4 @@
-from rest_framework import serializers, permissions
+from rest_framework import serializers
 
 from .models import (
             Featurecode,
@@ -53,12 +53,6 @@ class NestedGeonameSerializer(serializers.ModelSerializer):
         model = Geoname
         fields = ['geonameid', 'name','fcode']
 
-class NestedGeonameMinimalSerializer(serializers.ModelSerializer):
-    fcode = NestedFeaturecodeMinimalSerializer(required=False)
-    class Meta:
-        model = Geoname
-        fields = ['geonameid', 'fcode']
-
 class GeonameChildrenUpdateSerializer(serializers.ModelSerializer):
     children_ids = serializers.PrimaryKeyRelatedField(many=True,read_only=False,queryset=Geoname.objects.all(),source='children')
     class Meta:
@@ -70,9 +64,26 @@ class GeonameSerializer(serializers.ModelSerializer):
     children = NestedGeonameSerializer(many=True)
     alternatenames = NestedAlternatenameSerializer(many=True)
     class Meta:
-
         model = Geoname
         exclude = []
+
+class GeonameSearchSerializer(serializers.ModelSerializer):
+    country = NestedCountryinfoSerializer()
+    fcode = NestedFeaturecodeSerializer()
+    class Meta:
+        model = Geoname
+        fields = ['geonameid', 'name', 'englishname', 'country', 'fcode', 'population' ] 
+
+class NestedGeonameMinimalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Geoname
+        fields = ['geonameid', 'name']
+
+class GeonameMinimalSerializer(serializers.ModelSerializer):
+    children = NestedGeonameMinimalSerializer(many=True)
+    class Meta:
+        model = Geoname
+        fields = ['geonameid','name','children']
 
 class RegionSerializer(serializers.ModelSerializer):
     laender = NestedCountryinfoSerializer(many=True)
