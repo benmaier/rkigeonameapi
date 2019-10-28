@@ -180,7 +180,7 @@ You may want to alter a region's children countries by using
 
 * http://localhost:8000/geonameapi/regioncountries/<str:pk>
 
-#### Countries
+### Countries
 
 The database holds specific info about countries.
 
@@ -191,7 +191,7 @@ REST:
 * list/create: http://localhost:8000/geonameapi/country/
 * view/update: http://localhost:8000/geonameapi/country/<str:pk>
 
-#### Continents
+### Continents
 
 The database holds specific info about continents.
 
