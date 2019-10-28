@@ -49,6 +49,11 @@ default-character-set = utf8mb4
 
 and has to be located at `$(HOME)/.inig/mysql/rki_geonames_db.cnf`.
 
+Note that this project renames the `name` property of all locations to contain their most common German name. If you **don't** want this, you should
+edit the file `sql_setup_files/geonamemigration.sql` and replace all occurrences of `isoLanguage = 'de'` for the language you want to use. In order to 
+use the original English name, set `isoLanguage = 'XXXXX'` or something similarly non-sensical (the script automatically uses the English name for any
+location for which it cannot find a name in the demanded language).
+
 ### Initialize the project
 
 After installing [Geoname-DB](https://github.com/benmaier/GeoNames-MySQL-DataImport), edit the following line in the `Makefile` according to your needs:
