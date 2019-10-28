@@ -89,7 +89,6 @@ INSERT IGNORE INTO rkigeonames.geoname(
     geonameid
     ,englishname
     ,asciiname
-    ,alternatenames 
     ,latitude
     ,longitude
     ,fclass 
@@ -109,7 +108,6 @@ INSERT IGNORE INTO rkigeonames.geoname(
     geonameid
     ,name
     ,asciiname
-    ,alternatenames 
     ,latitude
     ,longitude
     ,fclass 
@@ -134,7 +132,6 @@ INSERT IGNORE INTO rkigeonames.geoname(
     geonameid
     ,englishname
     ,asciiname
-    ,alternatenames 
     ,latitude
     ,longitude
     ,fclass 
@@ -153,7 +150,6 @@ INSERT IGNORE INTO rkigeonames.geoname(
     geonameid
     ,name
     ,asciiname
-    ,alternatenames 
     ,latitude
     ,longitude
     ,fclass 
