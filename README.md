@@ -79,4 +79,41 @@ This project provides a simple interface to this database which allows a user to
 retrieve data and to edit hierarchical relationships.
 
 
+### Feature codes
+
+Each place is associated with a feature code. Here are the most relevant ones with explanations
+
+#### Continents and regions
+
+These are the ones that usually contain countries
+
+CONT| continent| continent: Europe, Africa, Asia, North America, South America, Oceania, Antarctica
+RGN| region| an area distinguished by one or more observable physical or cultural characteristics
+
+#### Countries
+
+These are used as synonyms for countries
+
+PCLI| independent political entity
+TERR| territory
+PCLD| dependent political entity
+
+#### Places
+
+These are used as synonyms for cities/villages/places that are neither countries nor regions nor administrative sections.
+
+PPLC | capital of a political entity | 
+PPL | populated place | a city, town, village, or other agglomeration of buildings where people live and work
+PPLA | seat of a first-order administrative division| seat of a first-order administrative division (PPLC takes precedence over PPLA) 
+PPLX | section of populated place | |
+
+#### Administrative divisions
+
+These are hierarchically decreasing administrative divisions of a country
+
+ADM1| first-order administrative division| a primary administrative division of a country, such as a state in the United States
+ADM2| second-order administrative division| a subdivision of a first-order administrative division
+ADM3| third-order administrative division| a subdivision of a second-order administrative division
+ADM4| fourth-order administrative division| a subdivision of a third-order administrative division
+ADM5| fifth-order administrative division| a subdivision of a fourth-order administrative division
 
