@@ -66,7 +66,7 @@ Run the server
 
     make runserver
 
-Login as an admin at http://localhost:8000/admin
+Login as an admin at http://localhost:8000/admin or http://localhost:8000/login
 
 ## Logic
 
