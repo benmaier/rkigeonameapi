@@ -113,7 +113,6 @@ class Hierarchy(models.Model):
     hierarchy_id = models.AutoField(primary_key=True)
     parent = models.ForeignKey(Geoname,models.CASCADE,related_name='parent_to',db_column='parentId')
     child = models.ForeignKey(Geoname,models.CASCADE,related_name='child_to',db_column='childId')
-    type = models.CharField(max_length=50,blank=True,null=True)
     is_custom_entry = models.BooleanField(blank=True,null=True,default=True,editable=False)
 
     class Meta:
