@@ -200,12 +200,10 @@ FROM geonames.alternatename;
 INSERT IGNORE INTO rkigeonames.hierarchy(
      parentId
    , childId
-   , type
    , is_custom_entry
-) SELECT
+) SELECT DISTINCT
      parentId
    , childId
-   , type
    , 0
 FROM geonames.hierarchy;
 
