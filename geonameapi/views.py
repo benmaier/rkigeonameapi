@@ -21,3 +21,7 @@ class FeaturecodeList(generics.ListCreateAPIView):
     queryset = Featurecode.objects.all()
     serializer_class = FeaturecodeSerializer
 
+class FeaturecodeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Featurecode.objects.all()
+    serializer_class = FeaturecodeSerializer
+
