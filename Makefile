@@ -4,9 +4,6 @@ MYSQL=/usr/local/mysql/bin/mysql
 PYTHON=/Users/bfmaier/Sites/django-inig/env/bin/python
 SQLFILES=sql_setup_files
 
-#initialinsert:
-#	$(MYSQL) --defaults-file=$(CNF) -v < $(SQLFILES)/inserts.sql
-
 geonamemigrate:
 	$(MYSQL) --defaults-file=$(CNF) -v < $(SQLFILES)/geonamemigration.sql
 
@@ -18,7 +15,6 @@ resetdatabase:
 	make cleanmigrate
 	make prepmigrate
 	make migrate
-	#make initialinsert
 	make geonamemigrate
 
 droptables:
@@ -33,9 +29,6 @@ migrate:
 
 superuser:
 	$(PYTHON) manage.py createsuperuser
-
-geomodels:
-	$(PYTHON) manage.py inspectdb --database=geonames > geomodels.py
 
 runserver:
 	$(PYTHON) manage.py runserver

@@ -79,12 +79,6 @@ WSGI_APPLICATION = 'rkigeonameapi.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 DATABASES = {
-    'geonames': {
-        'ENGINE': 'django.db.backends.mysql',
-        'OPTIONS': {
-            'read_default_file': str(Path.home() / '.inig' / 'mysql' / 'geo.cnf'),
-        },
-    },
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'OPTIONS': {

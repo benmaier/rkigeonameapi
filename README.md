@@ -9,6 +9,7 @@ Create a virtual environment
 ```bash
 python -m venv env
 source env/bin/activate
+pip install -r requirements.txt
 ```
 
 ## Database
@@ -22,6 +23,8 @@ GRANT ALL PRIVILEGES ON rkigeonames.* TO 'rkigeonames'@'localhost';
 GRANT SELECT ON geonames.* TO 'rkigeonames'@'localhost';
 ```
 
+The configuration file should look like this.
+
 ```config
 [client]
 host = ...
@@ -32,7 +35,7 @@ database = rkigeonames
 default-character-set = utf8mb4
 ```
 
-and has to be located at `$(HOME)/.inig/mysql/db.cnf`.
+and has to be located at `$(HOME)/.inig/mysql/rki_geonames_db.cnf`.
 
 ## Django-specific things
 

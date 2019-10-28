@@ -92,7 +92,7 @@ class Geoname(models.Model):
     timezone = models.CharField(max_length=40, blank=True, null=True)
     moddate = models.DateField(blank=True, null=True)
 
-    children = models.ManyToManyField('Geoname',through='Hierarchy')
+    children = models.ManyToManyField('Geoname',through='Hierarchy',blank=True)
 
     class Meta:
         db_table = 'geoname'
@@ -114,12 +114,16 @@ class Hierarchy(models.Model):
     parent = models.ForeignKey(Geoname,models.CASCADE,related_name='parent_to',db_column='parentId')
     child = models.ForeignKey(Geoname,models.CASCADE,related_name='child_to',db_column='childId')
     type = models.CharField(max_length=50,blank=True,null=True)
-    is_custom_entry = models.BooleanField(blank=True,null=True,default=True)
+    is_custom_entry = models.BooleanField(blank=True,null=True,default=True,editable=False)
 
     class Meta:
         db_table = 'hierarchy'
         verbose_name = 'Hierarchie'
         verbose_name_plural = 'Hierarchien'
+        unique_together = [ 'parent', 'child' ]
+
+    def __str__(self):
+        return "{} -> {}".format(self.parent.name, self.child.name)
         
 
 class Alternatename(models.Model):
