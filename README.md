@@ -4,6 +4,8 @@ Django-webapp for easy access to a hierarchical geo-location database.
 
 ## Install and Deployment
 
+Only tested with Python 3.7.
+
 ### Deployment
 
 Create a virtual environment
