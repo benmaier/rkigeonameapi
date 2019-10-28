@@ -87,8 +87,10 @@ Each place is associated with a feature code. Here are the most relevant ones wi
 
 These are the ones that usually contain countries
 
-| CONT | continent | continent: Europe, Africa, Asia, North America, South America, Oceania, Antarctica
-| RGN | region | an area distinguished by one or more observable physical or cultural characteristics
+fcode | name | description
+----- | ---- | -----------
+CONT | continent | continent: Europe, Africa, Asia, North America, South America, Oceania, Antarctica
+RGN | region | an area distinguished by one or more observable physical or cultural characteristics
 
 #### Countries
 
