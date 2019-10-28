@@ -78,19 +78,58 @@ such as alternative names in multiple languages, positional data, and hierarchic
 This project provides a simple interface to this database which allows a user to easily
 retrieve data and to edit hierarchical relationships.
 
+### Geonames
+
+A Geoname is a main geographical entity. It could be a populated place, a country or something else.
+
+#### API endpoints
+
+Admin: http://localhost:8000/admin/geonameapi/geoname/ 
+
+REST:
+
+| Action | Link | Description |
+| ------ | ---- | ----------- |
+| list/create | http://localhost:8000/geonameapi/geoname/ | Show a JSON list of all Geoname-objects and add an entry |
+| view/update | http://localhost:8000/geonameapi/geoname/<int:pk> | Show a single Geoname-object associated with the primary key as JSON |
+| search | http://localhost:8000/geonameapi/geonamesearch/SEARCHSTRING | Show all Geoname-objects whose `name` and `englishname` contain the `SEARCHSTRING` |
+| exhaustive search | http://localhost:8000/geonameapi/geonameexhaustivesearch/SEARCHSTRING | Show all Geoname-objects whose `alternatenames` or `englishname` start with the `SEARCHSTRING` |
+| search by feature code | http://localhost:8000/geonameapi/geonamesearch/SEARCHSTRING?fcode=ADM1,PCLI | As above, but only show geonames whose feature code is in the list of feature codes provided in the URL |
+| exhaustive search by feature code| http://localhost:8000/geonameapi/geonameexhaustivesearch/SEARCHSTRING?fcode=ADM1,PCLI | See definitions above |
+
+A Geoname can always contain multiple children (think of a US state containing cities). Here's how you control those hierarchical relationships
+
+Admin: http://localhost:8000/admin/geonameapi/hierarchy/
+
+REST:
+
+| Action | Link | Description |
+| ------ | ---- | ----------- |
+| update | http://localhost:8000/geonameapi/geonamechildren/<int:pk> | Show (`GET`) and update (`PATCH`) the children of a single Geoname-object |
+| view specific | http://localhost:8000/geonameapi/geonamefcodechildren/<int:pk>?fcode=ADM1,ADM2 | Show all children of a single Geoname-object that are associated with any of the specified feature codes |
+
 
 ### Feature codes
 
-Each place is associated with a feature code. Here are the most relevant ones with explanations
+Each Geoname is associated with a feature code. Here are the most relevant ones with explanations
+
+Admin: http://localhost:8000/admin/geonameapi/featurecode
+
+REST: 
+
+* list/create: http://localhost:8000/geonameapi/featurecode
+* view/update: http://localhost:8000/geonameapi/featurecode/<str:pk>
 
 #### Continents and regions
 
-These are the ones that usually contain countries
+These are objectes that usually contain multiple countries
 
 fcode | name | description
 ----- | ---- | -----------
 CONT | continent | continent: Europe, Africa, Asia, North America, South America, Oceania, Antarctica
 RGN | region | an area distinguished by one or more observable physical or cultural characteristics
+
+A region might also contain other places but this won't be of interest in this application. 
 
 #### Countries
 
@@ -124,4 +163,42 @@ These are hierarchically decreasing administrative divisions of a country
 | ADM3| third-order administrative division | a subdivision of a second-order administrative division
 | ADM4| fourth-order administrative division | a subdivision of a third-order administrative division
 | ADM5| fifth-order administrative division | a subdivision of a fourth-order administrative division
+
+
+### Regions
+
+Custom regions are shortcuts for improved handling/grouping of countries.
+
+Admin: http://localhost:8000/admin/geonameapi/region/
+
+REST:
+
+* list/create: http://localhost:8000/geonameapi/region/
+* view/update: http://localhost:8000/geonameapi/region/<str:pk>
+
+You may want to alter a region's children countries by using
+
+* http://localhost:8000/geonameapi/regioncountries/<str:pk>
+
+#### Countries
+
+The database holds specific info about countries.
+
+Admin: http://localhost:8000/admin/geonameapi/country/
+
+REST:
+
+* list/create: http://localhost:8000/geonameapi/country/
+* view/update: http://localhost:8000/geonameapi/country/<str:pk>
+
+#### Continents
+
+The database holds specific info about continents.
+
+Admin: http://localhost:8000/admin/geonameapi/continent/
+
+REST:
+
+* list/create: http://localhost:8000/geonameapi/continent/
+* view/update: http://localhost:8000/geonameapi/continent/<str:pk>
 
