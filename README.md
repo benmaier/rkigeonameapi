@@ -96,6 +96,8 @@ RGN | region | an area distinguished by one or more observable physical or cultu
 
 These are used as synonyms for countries
 
+| fcode | name 
+| ----- | ---- 
 | PCLI | independent political entity
 | TERR | territory
 | PCLD | dependent political entity
@@ -104,6 +106,8 @@ These are used as synonyms for countries
 
 These are used as synonyms for cities/villages/places that are neither countries nor regions nor administrative sections.
 
+| fcode | name | description
+| ----- | ---- | -----------
 | PPLC | capital of a political entity | |
 | PPL | populated place | a city, town, village, or other agglomeration of buildings where people live and work
 | PPLA | seat of a first-order administrative division | seat of a first-order administrative division (PPLC takes precedence over PPLA) 
@@ -113,6 +117,8 @@ These are used as synonyms for cities/villages/places that are neither countries
 
 These are hierarchically decreasing administrative divisions of a country
 
+| fcode | name | description
+| ----- | ---- | -----------
 | ADM1| first-order administrative division | a primary administrative division of a country, such as a state in the United States
 | ADM2| second-order administrative division | a subdivision of a first-order administrative division
 | ADM3| third-order administrative division | a subdivision of a second-order administrative division
