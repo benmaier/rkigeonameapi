@@ -1,3 +1,5 @@
+Beware! This is a whole django project. If you want to install the database as an app to your project, please check out https://github.com/benmaier/django-rkigeonameapi/.
+
 # RKI-GeonameAPI
 
 Django-webapp for easy access to a hierarchical geo-location database.
